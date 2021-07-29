@@ -1,2 +1,2 @@
-# movie-search-react
-리액트 예제 만들어보기
+# movie-search-vuex
+vuex 예제 만들어보기
