@@ -1,9 +1,5 @@
 <template>
-  <RouterLink
-    to="/"
-    class="logo">
-    <span>OMDbAPI</span>.COM
-  </RouterLink>
+  <RouterLink to="/" class="logo"> <span>OMDbAPI</span>.COM </RouterLink>
 </template>
 
 <style lang="scss" scoped>
