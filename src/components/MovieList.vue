@@ -1,30 +1,21 @@
 <template>
   <div class="container">
-    <div
-      :class="{ 'no-result': !movies.length }"
-      class="inner">
+    <div :class="{ 'no-result': !movies.length }" class="inner">
       <Loader v-if="loading" />
-      <div
-        v-if="message"
-        class="message">
+      <div v-if="message" class="message">
         {{ message }}
       </div>
-      <div
-        v-else
-        class="movies">
-        <MovieItem
-          v-for="movie in movies"
-          :key="movie.imdbID"
-          :movie="movie" />
+      <div v-else class="movies">
+        <MovieItem v-for="item in movies" :key="item.imdbID" :movie="item" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import Loader from '~/components/Loader'
-import MovieItem from '~/components/MovieItem'
+import { mapState } from "vuex";
+import Loader from "~/components/Loader";
+import MovieItem from "~/components/MovieItem";
 
 export default {
   components: {
@@ -32,13 +23,16 @@ export default {
     MovieItem
   },
   computed: {
-    ...mapState('movie', [
-      'movies',
-      'loading',
-      'message'
-    ])
+    movies() {
+      return this.$store.state.movie.movies;
+    }
+    // ...mapState('movie', [
+    //   'movies',
+    //   'loading',
+    //   'message'
+    // ])
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

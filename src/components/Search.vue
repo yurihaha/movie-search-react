@@ -26,6 +26,7 @@
 </template>
 
 <script>
+// import axios from "axios";
 export default {
   data() {
     return {
@@ -59,10 +60,17 @@ export default {
   methods: {
     // input 요소에서 enter 키를 누르면 가능하게 해야함 @keyup.enter
     async apply() {
-      const OMDB_API_KEY = "2f874730";
-      const res = await axios.get(
-        `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type${this.type}&y=${this.year}&page=1`
-      );
+      this.$store.dispatch("movie/searchMovies", {
+        //payload
+        title: this.title,
+        type: this.type,
+        number: this.number,
+        year: this.year
+      });
+      // const OMDB_API_KEY = "7035c60c";
+      // const res = await axios.get(
+      //   `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type${this.type}&y=${this.year}&page=1`
+      // );
       //async 요청하는 내용은 비동기로 동작해야함 실제 주소로 처리되고 처리될때까지 기다리기 위해
       //await 반환된 결과다 응답이라는 결과를 알려주기 위해 res 는 명시적으로 정한 변수
       console.log(res);

@@ -1,12 +1,11 @@
 <template>
-  <RouterLink
+  {{ movie.Title }}
+  <!-- <RouterLink
     :to="`/movie/${movie.imdbID}`"
     :style="{ backgroundImage: `url(${movie.Poster})` }"
-    class="movie">
-    <Loader
-      v-if="imageLoading"
-      :size="1.5"
-      absolute />
+    class="movie"
+  >
+    <Loader v-if="imageLoading" :size="1.5" absolute />
     <div class="info">
       <div class="year">
         {{ movie.Year }}
@@ -15,11 +14,11 @@
         {{ movie.Title }}
       </div>
     </div>
-  </RouterLink>
+  </RouterLink> -->
 </template>
 
 <script>
-import Loader from '~/components/Loader'
+import Loader from "~/components/Loader";
 
 export default {
   components: {
@@ -27,30 +26,31 @@ export default {
   },
   props: {
     movie: {
+      //데이터 받아줌
       type: Object,
-      default: () => ({})
+      default: () => ({}) //빈 객체 반환할때는 함수로 만들고 반환해야지
     }
   },
   data() {
     return {
       imageLoading: true
-    }
+    };
   },
   mounted() {
-    this.init()
+    this.init();
   },
   methods: {
     async init() {
-      const poster = this.movie.Poster
-      if (!poster || poster === 'N/A') {
-        this.imageLoading = false
+      const poster = this.movie.Poster;
+      if (!poster || poster === "N/A") {
+        this.imageLoading = false;
       } else {
-        await this.$loadImage(poster)
-        this.imageLoading = false
+        await this.$loadImage(poster);
+        this.imageLoading = false;
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -74,7 +74,7 @@ export default {
     border: 6px solid $primary;
   }
   .info {
-    background-color: rgba($black, .3);
+    background-color: rgba($black, 0.3);
     backdrop-filter: blur(10px);
     width: 100%;
     padding: 14px;
